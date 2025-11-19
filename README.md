@@ -9,3 +9,9 @@ This mod adds support for the [Neo keyboard layout](https://www.neo-layout.org/)
 
 [BepInExZip]: https://github.com/BepInEx/BepInEx/releases/download/v5.4.23.4/BepInEx_win_x64_5.4.23.4.zip
 [LatestRelease]: https://github.com/panicbit/CloverPitNeoLayout/releases/latest
+
+## Usage
+
+Simply select the keyboard layout in the options.
+
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/7a969e63-fb56-4a22-b63e-ffaca07e26f5" />
