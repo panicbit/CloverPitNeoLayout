@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>CloverPitNeoLayout</AssemblyName>
     <Product>CloverPitNeoLayout</Product>
     <Version>1.0.0</Version>
@@ -14,6 +14,42 @@
     </RestoreAdditionalProjectSources>
     <RootNamespace>CloverPitNeoLayout</RootNamespace>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Inline variable declaration -->
+    <NoWarn>IDE0018</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsLinux>$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))</IsLinux> 
+    <IsWindows>$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))</IsWindows> 
+    <IsOSX>$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))</IsOSX> 
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameName>CloverPit</GameName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameDir Condition="$(IsLinux)">$(HOME)/.local/share/Steam/steamapps/common/$(GameName)</GameDir>
+    <GameDir Condition="$(IsWindows)">C:/Program Files (x86)/Steam/steamapps/common/$(GameName)</GameDir>
+    <GameDir Condition="$(IsOSX)">TODO</GameDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameLibsDir>$(GameDir)/$(GameName)_Data/Managed</GameLibsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="-">
+      <HintPath>$(GameLibsDir)/Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(GameLibsDir)/Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
